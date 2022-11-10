@@ -28,14 +28,12 @@
                     <div class="main-container-header">
                         <h2>Inscription</h2>
                     </div>
-                    <form class="main-container-form">
+                    <form class="main-container-form" method="POST" enctype="multipart/form-data" action="./backend/register.php">
                         <div>
-                            <input type="text" placeholder="full name">
+                            <input type="text" placeholder="full name" id="fullname" name="fullname">
                         </div>
-                        
                         <div>
-                           
-                            <select>
+                            <select name="faculty">
                                 <option value="Faculty" selected="true" disabled="disabled">Faculty</option>
                                 <option value="TIC-1">TIC-1</option>
                                 <option value="TIC-2">TIC-2</option>
@@ -45,13 +43,13 @@
                         </div>
                        
                         <div>
-                            <input type="email" placeholder="Email">
+                            <input type="email" placeholder="Email" id="email" name="email">
                         </div>
                         <div>
-                            <input type="file" placeholder="Photo" accept="image/*">
+                            <input type="file" id="file" placeholder="Photo" accept="image/*" name="avatar">
                         </div>
                         <div>
-                            <input type="tel" placeholder="Numero de telephone">
+                            <input type="tel" id="tel" placeholder="Numero de telephone" name="tel">
                         </div>
                       
                         <button type="submit">Register</button>
