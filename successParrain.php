@@ -64,7 +64,7 @@ $user = $db->Con()->query("SELECT * FROM  parrain  WHERE FULLNAME= '".$_SESSION[
         </div>
         <div class="contain_information">
 
-            <button> <a href="register.php"><i class="fa-solid fa-arrow-left-long"></i></a> </button>
+            <button> <a href="registerParrain.php"><i class="fa-solid fa-arrow-left-long"></i></a> </button>
 
         </div>
 

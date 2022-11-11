@@ -30,10 +30,10 @@
                     </div>
                     <form class="main-container-form" method="POST" enctype="multipart/form-data" action="./backend/registerParrain.php">
                         <div>
-                            <input type="text" placeholder="full name" id="fullname" name="fullname">
+                            <input type="text" placeholder="full name" id="fullname" name="fullname" required>
                         </div>
                         <div>
-                            <select name="faculty">
+                            <select name="faculty" required>
                                 <option value="Faculty" selected="true" disabled="disabled">Faculty</option>
                               
                                 <option value="TIC-2">TIC-2</option>
@@ -43,20 +43,20 @@
                         </div>
                        
                         <div>
-                            <input type="email" placeholder="Email" id="email" name="email">
+                            <input type="email" placeholder="Email" id="email" name="email"  required>
                         </div>
                         <div>
-                            <input type="file" id="file" placeholder="Photo" accept="image/*" name="avatar">
+                            <input type="file" id="file" placeholder="Photo" accept="image/*" name="avatar" required>
                         </div>
                         <div>
-                            <input type="tel" id="tel" placeholder="Numero de telephone" name="tel">
+                            <input type="tel" id="tel" placeholder="Numero de telephone" name="tel" required>
                         </div>
                       
                         <button type="submit">Register</button>
                     </form>
                     <div class="main-container-footer">
                         <span>inscrivez vous comme filleuls ?</span>
-                        <a href="register.php">Filleuls register</a>
+                        <a href="registerParrain.php">Filleuls register</a>
                         
                     </div>
                 </div>
