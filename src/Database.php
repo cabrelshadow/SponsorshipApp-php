@@ -2,7 +2,7 @@
 
 session_start();
 
-require '../db/db.php';
+
 
 class DatabaseConfig
 {

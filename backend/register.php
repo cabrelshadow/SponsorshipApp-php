@@ -1,6 +1,7 @@
 <?php
 
 require_once '../src/Database.php';
+require '../db/db.php';
 $db = new DatabaseConfig();
 $post_data = $_POST;
 if (isset($post_data['fullname']) && isset($post_data['email']) && isset($post_data['tel']) && isset($post_data['faculty'])) {
@@ -27,7 +28,8 @@ if (isset($post_data['fullname']) && isset($post_data['email']) && isset($post_d
                     if (move_uploaded_file($tmp_name, '../upload/'.$new_img_name)) {
                         $add = $db->Con()->query("INSERT INTO filleuls (FULLNAME, PHONE,EMAIL,FACULTY,PICTURE) VALUES ('".$fullname."','".$tel."','".$email."','".$fac."','".$new_img_name."')");
                         if ($add) {
-                            echo 'Utilisateur bien enregistré...';
+                            $_SESSION['fullname'] = $fullname;
+                            header('location:/success.php');
                         }
                     } else {
                         echo "Une erreure lors de l'exportation";
