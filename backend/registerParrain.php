@@ -21,15 +21,15 @@ if (isset($post_data['fullname']) && isset($post_data['email']) && isset($post_d
         if (in_array($img_ext, $extensions) === true) {
             $types = ['image/jpeg', 'image/jpg', 'image/png'];
             if (in_array($img_type, $types) === true) {
-                $getFilleul = $db->Con()->query("SELECT * FROM filleuls WHERE FULLNAME='".$fullname."' AND EMAIL='".$email."' AND FACULTY='".$fac."'");
+                $getFilleul = $db->Con()->query("SELECT * FROM parrain WHERE FULLNAME='".$fullname."' AND EMAIL='".$email."' AND FACULTY='".$fac."'");
                 if ($getFilleul->rowCount() === 0) {
                     $time = time();
                     $new_img_name = time().'.'.$img_ext;
                     if (move_uploaded_file($tmp_name, '../upload/'.$new_img_name)) {
-                        $add = $db->Con()->query("INSERT INTO filleuls (FULLNAME, PHONE,EMAIL,FACULTY,PICTURE) VALUES ('".$fullname."','".$tel."','".$email."','".$fac."','".$new_img_name."')");
+                        $add = $db->Con()->query("INSERT INTO parrain (FULLNAME, PHONE,EMAIL,FACULTY,PICTURE) VALUES ('".$fullname."','".$tel."','".$email."','".$fac."','".$new_img_name."')");
                         if ($add) {
                             $_SESSION['fullname'] = $fullname;
-                            header('location:../success.php');
+                            header('location:../successParrain.php');
                         }
                     } else {
                         echo "Une erreure lors de l'exportation";

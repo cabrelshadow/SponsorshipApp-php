@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
+    <title>Inscription Parrain</title>
     <link rel="stylesheet" href="register.css">
 </head>
 <body>
@@ -26,7 +26,7 @@
             <div class="content">
                 <div class="main-container">
                     <div class="main-container-header">
-                        <h2>Inscription Filleuls</h2>
+                        <h2>Inscription</h2>
                     </div>
                     <form class="main-container-form" method="POST" enctype="multipart/form-data" action="./backend/registerParrain.php">
                         <div>
@@ -35,8 +35,9 @@
                         <div>
                             <select name="faculty">
                                 <option value="Faculty" selected="true" disabled="disabled">Faculty</option>
-                                <option value="TIC-1">TIC-1</option>
-                      
+                              
+                                <option value="TIC-2">TIC-2</option>
+                              
                                 <option value="PREPA3IL-2">PREPA3IL-2</option>
                             </select>
                         </div>
@@ -54,8 +55,9 @@
                         <button type="submit">Register</button>
                     </form>
                     <div class="main-container-footer">
-                        <span>inscrivez vous comme parrain</span>
-                        <a href="registerParrain.php">parrain register</a>
+                        <span>inscrivez vous comme filleuls ?</span>
+                        <a href="register.php">Filleuls register</a>
+                        
                     </div>
                 </div>
             </div>
