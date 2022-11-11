@@ -28,7 +28,7 @@
                     <div class="main-container-header">
                         <h2>Inscription Filleuls</h2>
                     </div>
-                    <form class="main-container-form" method="POST" enctype="multipart/form-data" action="./backend/registerParrain.php">
+                    <form class="main-container-form" method="POST" enctype="multipart/form-data" action="./backend/register.php">
                         <div>
                             <input type="text" placeholder="full name" id="fullname" name="fullname">
                         </div>
@@ -37,7 +37,7 @@
                                 <option value="Faculty" selected="true" disabled="disabled">Faculty</option>
                                 <option value="TIC-1">TIC-1</option>
                       
-                                <option value="PREPA3IL-2">PREPA3IL-2</option>
+                                <option value="PREPA3IL-1">PREPA3IL-1</option>
                             </select>
                         </div>
                        

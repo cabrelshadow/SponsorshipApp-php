@@ -26,7 +26,7 @@
             <div class="content">
                 <div class="main-container">
                     <div class="main-container-header">
-                        <h2>Inscription</h2>
+                        <h2>Inscription Parrain</h2>
                     </div>
                     <form class="main-container-form" method="POST" enctype="multipart/form-data" action="./backend/registerParrain.php">
                         <div>

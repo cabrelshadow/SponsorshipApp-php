@@ -29,7 +29,7 @@ if (isset($post_data['fullname']) && isset($post_data['email']) && isset($post_d
                         $add = $db->Con()->query("INSERT INTO filleuls (FULLNAME, PHONE,EMAIL,FACULTY,PICTURE) VALUES ('".$fullname."','".$tel."','".$email."','".$fac."','".$new_img_name."')");
                         if ($add) {
                             $_SESSION['fullname'] = $fullname;
-                            header('location:../success.php');
+                            header('location:../successFilleuls.php');
                         }
                     } else {
                         echo "Une erreure lors de l'exportation";

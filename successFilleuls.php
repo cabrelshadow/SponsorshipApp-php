@@ -3,7 +3,7 @@
 require_once './src/Database.php';
 require './db/db.php';
 $db = new DatabaseConfig();
-$user = $db->Con()->query("SELECT * FROM  parrain  WHERE FULLNAME= '".$_SESSION['fullname']."'")->fetch();
+$user = $db->Con()->query("SELECT * FROM filleuls WHERE FULLNAME= '".$_SESSION['fullname']."'")->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,19 +42,14 @@ $user = $db->Con()->query("SELECT * FROM  parrain  WHERE FULLNAME= '".$_SESSION[
         </div>
 
         <div class="contain_text">
-            <div class="d1"><span class="log"> <i class="fa-solid fa-user"></i>
-            </span> <span class="dde">
+            <div class="d1"><span class="log"> <i class="fa-solid fa-user"></i> </span> <span class="dde">
             <?php echo $user['FULLNAME']; ?>
             </span></div>
-            <div class="d2"><span class="log"> <i class="fa-solid fa-barcode">
+            <div class="d2"><span class="log"> <i class="fa-solid fa-barcode"></i></span> <span class="dde"> <?php echo $user['FACULTY']; ?></span></div>
 
-            </i></span> <span class="dde"> <?php echo $user['FACULTY']; ?></span></div>
+            <div class="d2"><span class="log"> <i class="fa-solid fa-envelope"></i> </span> <span class="dde"><?php echo $user['EMAIL']; ?></span></div>
 
-            <div class="d2"><span class="log"> <i class="fa-solid fa-envelope"></i> 
-            </span> <span class="dde"><?php echo $user['EMAIL']; ?></span></div>
-
-            <div class="d2"><span class="log"><i class="fa-solid fa-phone"></i>
-            </span> <span class="dde"><?php echo $user['PHONE']; ?></span></div>
+            <div class="d2"><span class="log"><i class="fa-solid fa-phone"></i> </span> <span class="dde"><?php echo $user['PHONE']; ?></span></div>
 
             <!-- <p class="p1">Tic Pam</p>
             <p class="p2">sadoscott@gmail.com</p>
@@ -64,8 +59,7 @@ $user = $db->Con()->query("SELECT * FROM  parrain  WHERE FULLNAME= '".$_SESSION[
         </div>
         <div class="contain_information">
 
-            <button> <a href="register.php"><i class="fa-solid fa-arrow-left-long"></i></a> </button>
-
+        <a href="register.php">  <button> <i class="fa-solid fa-arrow-left-long"></i> retourner </button></a>
         </div>
 
     </div>
