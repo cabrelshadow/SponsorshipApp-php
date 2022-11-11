@@ -2,8 +2,6 @@
 
 session_start();
 
-
-
 class DatabaseConfig
 {
     protected $HOST;

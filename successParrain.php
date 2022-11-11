@@ -4,6 +4,7 @@ require_once './src/Database.php';
 require './db/db.php';
 $db = new DatabaseConfig();
 $user = $db->Con()->query("SELECT * FROM  parrain  WHERE FULLNAME= '".$_SESSION['fullname']."'")->fetch();
+extract($user);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,7 @@ $user = $db->Con()->query("SELECT * FROM  parrain  WHERE FULLNAME= '".$_SESSION[
  
 
     <div class="contain">
-    Félicitation <?php echo $user['FULLNAME']; ?>, vous êtes bien enregistrer.
+    Félicitation <?php echo $FULLNAME; ?>, vous êtes bien enregistrer.
         <span class="boule1"></span>
         <span class="boule2"></span>
 

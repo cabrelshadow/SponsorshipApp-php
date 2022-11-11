@@ -4,6 +4,7 @@ require_once './src/Database.php';
 require './db/db.php';
 $db = new DatabaseConfig();
 $user = $db->Con()->query("SELECT * FROM filleuls WHERE FULLNAME= '".$_SESSION['fullname']."'")->fetch();
+extract($user);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,25 +32,25 @@ $user = $db->Con()->query("SELECT * FROM filleuls WHERE FULLNAME= '".$_SESSION['
  
 
     <div class="contain">
-    Félicitation <?php echo $user['FULLNAME']; ?>, vous êtes bien enregistrer.
+    Félicitation <?php echo $FULLNAME; ?>, vous êtes bien enregistrer.
         <span class="boule1"></span>
         <span class="boule2"></span>
 
            
         <div class="contain_img">
-            <img src="./upload/<?php echo $user['PICTURE']; ?>" alt="">
+            <img src="./upload/<?php echo $PICTURE; ?>" alt="">
 
         </div>
 
         <div class="contain_text">
             <div class="d1"><span class="log"> <i class="fa-solid fa-user"></i> </span> <span class="dde">
-            <?php echo $user['FULLNAME']; ?>
+            <?php echo $FULLNAME; ?>
             </span></div>
-            <div class="d2"><span class="log"> <i class="fa-solid fa-barcode"></i></span> <span class="dde"> <?php echo $user['FACULTY']; ?></span></div>
+            <div class="d2"><span class="log"> <i class="fa-solid fa-barcode"></i></span> <span class="dde"> <?php echo $FACULTY; ?></span></div>
 
-            <div class="d2"><span class="log"> <i class="fa-solid fa-envelope"></i> </span> <span class="dde"><?php echo $user['EMAIL']; ?></span></div>
+            <div class="d2"><span class="log"> <i class="fa-solid fa-envelope"></i> </span> <span class="dde"><?php echo $EMAIL; ?></span></div>
 
-            <div class="d2"><span class="log"><i class="fa-solid fa-phone"></i> </span> <span class="dde"><?php echo $user['PHONE']; ?></span></div>
+            <div class="d2"><span class="log"><i class="fa-solid fa-phone"></i> </span> <span class="dde"><?php echo $PHONE; ?></span></div>
 
             <!-- <p class="p1">Tic Pam</p>
             <p class="p2">sadoscott@gmail.com</p>
