@@ -6,5 +6,7 @@ require '../db/db.php';
 $db = new DatabaseConfig();
 
 $parrain = new Parrainage($db->Con());
-$nbr = $parrain->CountFilleuls();
-var_dump($nbr[0]['total']);
+$nbr = $parrain->setRandomParrain(function ($br) {
+    var_dump($br);
+});
+// var_dump($nbr);
