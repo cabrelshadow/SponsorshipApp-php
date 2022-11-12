@@ -124,6 +124,6 @@ class Parrainage
             $this->con->query("UPDATE filleuls SET IDPARRAIN='".$getAllParrain[$i]['IDPARRAIN']."' WHERE IDFILLEUlS='".$getAllFilleuls[$i]['IDFILLEULS']."'");
             // var_dump($getAllParrain[$i]['IDPARRAIN']);
         }
-        $fun($newNbr);
+        $fun($this->getFilleulsByParrain(0, 9));
     }
 }
