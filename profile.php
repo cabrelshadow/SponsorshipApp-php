@@ -28,7 +28,7 @@ if (isset($_POST['submit']) && isset($_SESSION['IDFILLEULS'])) {
                     if (move_uploaded_file($tmp_name, './upload/'.$new_img_name)) {
                         $add = $db->Con()->query("UPDATE filleuls SET PICTURE = '".$new_img_name."' WHERE IDFILLEULS='".$_SESSION['IDFILLEULS']."'");
                         if ($add) {
-                            $_SESSION['fullname'] = $user['fullname'];
+                            $_SESSION['fullname'] = $user['FULLNAME'];
                             header('location:./successFilleuls.php');
                         }
                     } else {
@@ -62,14 +62,14 @@ if (isset($_POST['submit']) && isset($_SESSION['IDPARRAIN'])) {
         if (in_array($img_ext, $extensions) === true) {
             $types = ['image/jpeg', 'image/jpg', 'image/png'];
             if (in_array($img_type, $types) === true) {
-                $getFilleul = $db->Con()->query("SELECT * FROM parrain WHERE IDPARRAIN='".$_SESSION['IDFILLEULS']."'");
+                $getFilleul = $db->Con()->query("SELECT * FROM parrain WHERE IDPARRAIN='".$_SESSION['IDPARRAIN']."'");
                 if ($getFilleul->rowCount() > 0) {
                     $time = time();
                     $new_img_name = time().'.'.$img_ext;
                     if (move_uploaded_file($tmp_name, './upload/'.$new_img_name)) {
                         $add = $db->Con()->query("UPDATE parrain SET PICTURE = '".$new_img_name."' WHERE IDPARRAIN='".$_SESSION['IDPARRAIN']."'");
                         if ($add) {
-                            $_SESSION['fullname'] = $user['fullname'];
+                            $_SESSION['fullname'] = $user['FULLNAME'];
                             header('location:./successParrain.php');
                         }
                     } else {

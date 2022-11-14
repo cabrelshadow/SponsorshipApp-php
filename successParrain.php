@@ -3,6 +3,7 @@
 require_once './src/Database.php';
 require './db/db.php';
 $db = new DatabaseConfig();
+
 $user = $db->Con()->query("SELECT * FROM  parrain  WHERE FULLNAME= '".$_SESSION['fullname']."'")->fetch();
 extract($user);
 ?>
