@@ -7,82 +7,83 @@ $db = new DatabaseConfig();
 $user = '';
 if (isset($_SESSION['IDFILLEULS'])) {
     $user = $profile->getUser($db->Con(), 'filleuls', $_SESSION['IDFILLEULS']);
-    if (isset($_POST['submit'])) {
-        if (isset($_FILES['avatar'])) {
-            $img_name = $_FILES['avatar']['name'];
-            $img_type = $_FILES['avatar']['type'];
-            $tmp_name = $_FILES['avatar']['tmp_name'];
-    
-            $img_explode = explode('.', $img_name);
-            $img_ext = end($img_explode);
-    
-            $extensions = ['jpeg', 'png', 'jpg'];
-            if (in_array($img_ext, $extensions) === true) {
-                $types = ['image/jpeg', 'image/jpg', 'image/png'];
-                if (in_array($img_type, $types) === true) {
-                    $getFilleul = $db->Con()->query("SELECT * FROM filleuls WHERE IDFILLEULS='".$_SESSION['IDFILLEULS']."'");
-                    if ($getFilleul->rowCount() === 0) {
-                        $time = time();
-                        $new_img_name = time().'.'.$img_ext;
-                        if (move_uploaded_file($tmp_name, '../upload/'.$new_img_name)) {
-                            $add = $db->Con()->query("UPDATE filleuls SET PICTURE = '".$new_img_name."' WHERE IDFILLEULS='".$_SESSION['IDFILLEULS']."'");
-                            if ($add) {
-                                $_SESSION['fullname'] = $user['fullname'];
-                                header('location:../successFilleuls.php');
-                            }
-                        } else {
-                            echo "Une erreure lors de l'exportation";
+}
+if (isset($_POST['submit']) && isset($_SESSION['IDFILLEULS'])) {
+    if (isset($_FILES['avatar'])) {
+        $img_name = $_FILES['avatar']['name'];
+        $img_type = $_FILES['avatar']['type'];
+        $tmp_name = $_FILES['avatar']['tmp_name'];
+
+        $img_explode = explode('.', $img_name);
+        $img_ext = end($img_explode);
+
+        $extensions = ['jpeg', 'png', 'jpg'];
+        if (in_array($img_ext, $extensions) === true) {
+            $types = ['image/jpeg', 'image/jpg', 'image/png'];
+            if (in_array($img_type, $types) === true) {
+                $getFilleul = $db->Con()->query("SELECT * FROM filleuls WHERE IDFILLEULS='".$_SESSION['IDFILLEULS']."'");
+                if ($getFilleul->rowCount() > 0) {
+                    $time = time();
+                    $new_img_name = time().'.'.$img_ext;
+                    if (move_uploaded_file($tmp_name, './upload/'.$new_img_name)) {
+                        $add = $db->Con()->query("UPDATE filleuls SET PICTURE = '".$new_img_name."' WHERE IDFILLEULS='".$_SESSION['IDFILLEULS']."'");
+                        if ($add) {
+                            $_SESSION['fullname'] = $user['fullname'];
+                            header('location:./successFilleuls.php');
                         }
+                    } else {
+                        echo "Une erreure lors de l'exportation";
                     }
                 } else {
-                    echo 'fichier image - jpeg, png, jpg requis';
+                    echo 'erreur';
                 }
             } else {
                 echo 'fichier image - jpeg, png, jpg requis';
             }
+        } else {
+            echo 'fichier image - jpeg, png, jpg requis';
         }
     }
 }
 if (isset($_SESSION['IDPARRAIN'])) {
     $user = $profile->getUser($db->Con(), 'parrain', $_SESSION['IDPARRAIN']);
-    if (isset($_POST['submit'])) {
-        if (isset($_FILES['avatar'])) {
-            $img_name = $_FILES['avatar']['name'];
-            $img_type = $_FILES['avatar']['type'];
-            $tmp_name = $_FILES['avatar']['tmp_name'];
-    
-            $img_explode = explode('.', $img_name);
-            $img_ext = end($img_explode);
-    
-            $extensions = ['jpeg', 'png', 'jpg'];
-            if (in_array($img_ext, $extensions) === true) {
-                $types = ['image/jpeg', 'image/jpg', 'image/png'];
-                if (in_array($img_type, $types) === true) {
-                    $getFilleul = $db->Con()->query("SELECT * FROM filleuls WHERE IDFILLEULS='".$_SESSION['IDFILLEULS']."'");
-                    if ($getFilleul->rowCount() === 0) {
-                        $time = time();
-                        $new_img_name = time().'.'.$img_ext;
-                        if (move_uploaded_file($tmp_name, '../upload/'.$new_img_name)) {
-                            $add = $db->Con()->query("UPDATE filleuls SET PICTURE = '".$new_img_name."' WHERE IDPARRAIN='".$_SESSION['IDPARRAIN']."'");
-                            if ($add) {
-                                $_SESSION['fullname'] = $user['fullname'];
-                                header('location:../successParrain.php');
-                            }
-                        } else {
-                            echo "Une erreure lors de l'exportation";
+}
+
+if (isset($_POST['submit']) && isset($_SESSION['IDPARRAIN'])) {
+    if (isset($_FILES['avatar'])) {
+        $img_name = $_FILES['avatar']['name'];
+        $img_type = $_FILES['avatar']['type'];
+        $tmp_name = $_FILES['avatar']['tmp_name'];
+
+        $img_explode = explode('.', $img_name);
+        $img_ext = end($img_explode);
+
+        $extensions = ['jpeg', 'png', 'jpg'];
+        if (in_array($img_ext, $extensions) === true) {
+            $types = ['image/jpeg', 'image/jpg', 'image/png'];
+            if (in_array($img_type, $types) === true) {
+                $getFilleul = $db->Con()->query("SELECT * FROM parrain WHERE IDPARRAIN='".$_SESSION['IDFILLEULS']."'");
+                if ($getFilleul->rowCount() > 0) {
+                    $time = time();
+                    $new_img_name = time().'.'.$img_ext;
+                    if (move_uploaded_file($tmp_name, './upload/'.$new_img_name)) {
+                        $add = $db->Con()->query("UPDATE parrain SET PICTURE = '".$new_img_name."' WHERE IDPARRAIN='".$_SESSION['IDPARRAIN']."'");
+                        if ($add) {
+                            $_SESSION['fullname'] = $user['fullname'];
+                            header('location:./successParrain.php');
                         }
+                    } else {
+                        echo "Une erreure lors de l'exportation";
                     }
-                } else {
-                    echo 'fichier image - jpeg, png, jpg requis';
                 }
             } else {
                 echo 'fichier image - jpeg, png, jpg requis';
             }
+        } else {
+            echo 'fichier image - jpeg, png, jpg requis';
         }
     }
 }
-
-
 
 ?>
 <!DOCTYPE html>
