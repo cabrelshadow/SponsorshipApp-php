@@ -107,6 +107,7 @@ if (isset($_SESSION['IDPARRAIN'])) {
                   </div>
                 </div>
                 <button class="btn btn-success w-100" name="submit" type="submit">Enregistrer</button>
+                <center><a href="logout.php">se deconnecter</a> </center>
             </form>
         </div>
     </div>
