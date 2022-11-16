@@ -34,6 +34,7 @@ class Parrainage
 
         return $filleuls;
     }
+
     public function getAllFilleulsTI(int $limit = 0): array
     {
         $filleuls = [];
@@ -60,11 +61,10 @@ class Parrainage
             $filleuls = $this->con->query('SELECT * FROM filleuls  WHERE IDPARRAIN IS NULL ')->fetchAll();
         }
 
-
-        
         return $filleuls;
     }
-// recuperation de tout les filleuls de tic1 qui nont pas de parrain
+
+    // recuperation de tout les filleuls de tic1 qui nont pas de parrain
     public function getFilleulTIC1sHaveNotParrain(int $limit = 0): array
     {
         $filleuls = [];
@@ -76,7 +76,8 @@ class Parrainage
 
         return $filleuls;
     }
-// recuperation de tout les filleuls de prepa 3il qui nont pas de parrain
+
+    // recuperation de tout les filleuls de prepa 3il qui nont pas de parrain
     public function getFilleul3IL1sHaveNotParrain(int $limit = 0): array
     {
         $filleuls = [];
@@ -88,7 +89,8 @@ class Parrainage
 
         return $filleuls;
     }
-// recuperation de tout les parrains
+
+    // recuperation de tout les parrains
     public function getParrainHaveNotFilleuls(int $limit = 0): array
     {
         $filleuls = [];
@@ -100,8 +102,9 @@ class Parrainage
 
         return $filleuls;
     }
+
     //recuperation des parrain qui non pas de filleuls
-     public function getParrainHaveNotFilleuls3IL(int $limit = 0): array
+    public function getParrainHaveNotFilleuls3IL(int $limit = 0): array
     {
         $filleuls = [];
         if ($limit !== 0) {
@@ -150,25 +153,33 @@ class Parrainage
     /**
      * CountFilleuls.
      */
+    public function CountFilleulHasParrain()
+    {
+        return intval($this->con->query('SELECT COUNT(*) as total FROM filleuls WHERE IDPARRAIN NOT NULL ')->fetchAll()[0]['total']);
+    }
+
     public function CountFilleuls(): int
     {
         return intval($this->con->query('SELECT COUNT(*) as total FROM filleuls WHERE IDPARRAIN IS NULL ')->fetchAll()[0]['total']);
     }
+
     // count filleuls ti 1
     public function CountFilleulsTi(): int
     {
         return intval($this->con->query("SELECT COUNT(*) as total FROM filleuls WHERE FACULTY LIKE 'TI%' AND IDPARRAIN IS NULL ")->fetchAll()[0]['total']);
     }
+
     //count filleul 3il 1
     public function CountFilleuls3IL(): int
     {
         return intval($this->con->query("SELECT COUNT(*) as total FROM filleuls WHERE FACULTY LIKE '3IL%' AND IDPARRAIN IS NULL ")->fetchAll()[0]['total']);
     }
-   
+
     public function CountParrains(): int
     {
         return intval($this->con->query('SELECT COUNT(*) as total FROM parrain ')->fetchAll()[0]['total']);
     }
+
     //count parraint tic 2
     public function CountParrainsTI2(): int
     {
@@ -180,7 +191,8 @@ class Parrainage
     {
         return intval($this->con->query("SELECT COUNT(*) as total FROM parrain WHERE FACULTY LIKE '3IL%' ")->fetchAll()[0]['total']);
     }
-//founction ramdom pour toute les filliere confondue
+
+    //founction ramdom pour toute les filliere confondue
     public function setRandomParrain(closure $fun)
     {
         $getAllFilleuls = $this->getFilleulsHaveNotParrain();
@@ -189,7 +201,7 @@ class Parrainage
         $countFilleuls = $this->CountFilleuls();
         $newNbr = $countFilleuls > $countParrin ? ($countFilleuls - ($countFilleuls - $countParrin)) : ($countParrin - ($countParrin - $countFilleuls));
 
-        shuffle($getAllFilleuls);//mellange des filleus
+        shuffle($getAllFilleuls); //mellange des filleus
         shuffle($getAllParrain); // mellange des parrain
         for ($i = 0; $i < $newNbr; ++$i) {
             $this->con->query("UPDATE filleuls SET IDPARRAIN='".$getAllParrain[$i]['IDPARRAIN']."' WHERE IDFILLEUlS='".$getAllFilleuls[$i]['IDFILLEULS']."'");
@@ -197,6 +209,7 @@ class Parrainage
         }
         $fun($this->getFilleulsByParrain(0, 9));
     }
+
     //parrainage entre les tic 1 et tic 2
     public function setRandomParrainTIC1_TIC2(closure $fun)
     {
@@ -206,29 +219,30 @@ class Parrainage
         $countFilleuls = $this->CountFilleulsTi();
         $newNbr = $countFilleuls > $countParrin ? ($countFilleuls - ($countFilleuls - $countParrin)) : ($countParrin - ($countParrin - $countFilleuls));
 
-        shuffle($getAllFilleuls);//mellange des filleus
+        shuffle($getAllFilleuls); //mellange des filleus
         shuffle($getAllParrain); // mellange des parrain
         for ($i = 0; $i < $newNbr; ++$i) {
-            $this->con->query("UPDATE filleuls SET IDPARRAIN='".$getAllParrain[$i]['IDPARRAIN']."' WHERE IDFILLEUlS='".$getAllFilleuls[$i]['IDFILLEULS']."'");
+            $req = $this->con->query("UPDATE filleuls SET IDPARRAIN='".$getAllParrain[$i]['IDPARRAIN']."' WHERE IDFILLEUlS='".$getAllFilleuls[$i]['IDFILLEULS']."'");
             // var_dump($getAllParrain[$i]['IDPARRAIN']);
         }
-        $fun($this->getFilleulsByParrain(0, 9));
+        $fun($req->fetchAll());
     }
+
     //parrainage entre les 3il 1 et 3il 2
     public function setRandomParrain3il1_3il2(closure $fun)
-    {    
+    {
         $getAllFilleuls = $this->getFilleul3IL1sHaveNotParrain();
         $getAllParrain = $this->getParrainHaveNotFilleuls3IL();
-        $countParrin = $this->CountParrains3il2(); 
+        $countParrin = $this->CountParrains3il2();
         $countFilleuls = $this->CountFilleuls3IL();
         $newNbr = $countFilleuls > $countParrin ? ($countFilleuls - ($countFilleuls - $countParrin)) : ($countParrin - ($countParrin - $countFilleuls));
 
-        shuffle($getAllFilleuls);//mellange des filleus
+        shuffle($getAllFilleuls); //mellange des filleus
         shuffle($getAllParrain); // mellange des parrain
         for ($i = 0; $i < $newNbr; ++$i) {
-            $this->con->query("UPDATE filleuls SET IDPARRAIN='".$getAllParrain[$i]['IDPARRAIN']."' WHERE IDFILLEUlS='".$getAllFilleuls[$i]['IDFILLEULS']."'");
+            $req = $this->con->query("UPDATE filleuls SET IDPARRAIN='".$getAllParrain[$i]['IDPARRAIN']."' WHERE IDFILLEUlS='".$getAllFilleuls[$i]['IDFILLEULS']."'");
             // var_dump($getAllParrain[$i]['IDPARRAIN']);
         }
-        $fun($this->getFilleulsByParrain(0, 9));
+        $fun($req->fetchAll());
     }
 }
