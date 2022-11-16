@@ -81,6 +81,7 @@ function Carousel(){
         console.log(current)
     AllParrain[current-1].style.display="none";
     AllParrain[current].style.display="block"
+    AllParrain[current].style.backgroundColor="#"+Math.floor(Math.random()*16777215).toString(16)
     AllParrain[current].setAttribute("data-current",current);
     }, 2000);
     setTimeout(Carousel,5000);
