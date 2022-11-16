@@ -231,4 +231,14 @@ class Parrainage
         }
         $fun($this->getFilleulsByParrain(0, 9));
     }
+//getAllFilleulsWithParrain
+public function getAllFilleulsWithParrain()
+{ 
+ $query="SELECT p.FULLNAME ,p.PHONE ,p.EMAIL ,p.FACULTY, P.PICTURE , f.FULLNAME ,f.PHONE ,
+          f.EMAIL ,f.FACULTY ,f.PICTURE from parrain p JOIN filleuls f USING (IDPARRAIN)";
+          
+
+    return $this->con->query($query)->fetchAll();
+}
+
 }
