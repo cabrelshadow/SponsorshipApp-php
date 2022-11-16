@@ -1,7 +1,7 @@
 (async()=>{
     const r =await HttpRequest("GET","../backend/sponsorship.php")
     console.log(r)
-})()
+})();
 /**
  * 
  * @param {*} method 
@@ -46,8 +46,8 @@ function HttpRequest(method,url){
             return children
         }
     }
-    xhr.open(method,url)
-    xhr.send()
+    xhr.open(method,url);
+    xhr.send();
 
     
 }
@@ -65,12 +65,12 @@ setTimeout(() => {
     for (const p in AllParrain) {
         if (Object.hasOwnProperty.call(AllParrain, p)) {
             const parrain = AllParrain[p];
-            parrain.style.display="none"
+            parrain.style.display="none";
         }
     }
-AllParrain[current].style.display="block"
-AllParrain[current].setAttribute("data-current",current)
-Carousel(AllParrain)
+AllParrain[current].style.display="block";
+AllParrain[current].setAttribute("data-current",current);
+Carousel();
 }, 2000);
 
 
