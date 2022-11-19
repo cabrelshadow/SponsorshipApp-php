@@ -7,24 +7,38 @@ $db = new DatabaseConfig();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./css/index.css">
-</head>
-<body>
-    <div class="container">
-        <div class="sponsorships">
-            
-        </div>
-    </div>
+    <?php include_once './partial/_static.php'; ?>
 
-<script src="./js/main.js">
-</script>
-</body> 
+    <title>SponsorShipp</title>
+</head>
+
+<body>
+    <?php include_once './partial/nav.php'; ?>
+    <!--=============== MAIN ===============-->
+    <main class="container section container_sponsor" id="sponsorship">
+
+
+
+
+
+
+
+
+
+    </main>
+    <!--=============== MAIN JS ===============-->
+    <script src="./js/main.js" type="module"></script>
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-LLWL5N9CSM"></script> -->
+</body>
+
 </html>
+
+<style>
+.parrain {
+    width: 100%;
+}
+</style>
