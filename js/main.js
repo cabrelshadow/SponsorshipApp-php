@@ -187,6 +187,7 @@ function Carousel() {
 }
 
 const audio = new Audio("../assets/Halo Theme Song Original.weba");
+audio.loop = true;
 document.addEventListener("keyup", (e) => {
   e.code = "Space" && audio.play();
 });
