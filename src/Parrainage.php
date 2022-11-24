@@ -126,7 +126,7 @@ class Parrainage
     {
         $filleuls = [];
         if ($limit > 0) {
-            $filleuls = $this->con->query('SELECT * FROM filleuls  WHERE IDPARRAIN = '.$parrain_id.'')->fetchAll();
+            $filleuls = $this->con->query('SELECT * FROM filleuls  WHERE IDPARRAIN = '.$parrain_id.' LIMIT '.$limit.'')->fetchAll();
         } else {
             $filleuls = $this->con->query('SELECT * FROM filleuls  WHERE IDPARRAIN = '.$parrain_id.'')->fetchAll();
         }
@@ -245,14 +245,29 @@ class Parrainage
         }
         $fun($req->fetchAll());
     }
-//getAllFilleulsWithParrain
-public function getAllFilleulsWithParrain()
-{ 
- $query="SELECT p.FULLNAME ,p.PHONE ,p.EMAIL ,p.FACULTY, P.PICTURE , f.FULLNAME ,f.PHONE ,
-          f.EMAIL ,f.FACULTY ,f.PICTURE from parrain p JOIN filleuls f USING (IDPARRAIN)";
-          
 
-    return $this->con->query($query)->fetchAll();
-}
+    //getAllFilleulsWithParrain
+    public function getAllFilleulsWithParrain()
+    {
+        // $query = 'SELECT p.FULLNAME ,p.PHONE ,p.EMAIL ,p.FACULTY, P.PICTURE , f.FULLNAME ,f.PHONE ,
+        //   f.EMAIL ,f.FACULTY ,f.PICTURE from parrain p JOIN filleuls f USING (IDPARRAIN)';
 
+        // return $this->con->query($query)->fetchAll();
+        $parrainAndFilleuls = [];
+        $getParrain = $this->con->query('SELECT * FROM parrain')->fetchAll();
+        foreach ($getParrain as $parrain) {
+            $getFilleul = $this->getFilleulsByParrain(0, $parrain['IDPARRAIN']);
+            $fdata = [
+        'PARRAIN_NAME' => $parrain['FULLNAME'],
+        'PARRAIN_email' => $parrain['EMAIL'],
+        'PARRAIN_phone' => $parrain['PHONE'],
+        'PARRAIN_picture' => $parrain['PICTURE'],
+        'PARRAIN_faculty' => $parrain['FACULTY'],
+        'PARRAIN_filleuls' => $getFilleul,
+     ];
+            array_push($parrainAndFilleuls, $fdata);
+        }
+
+        return $parrainAndFilleuls;
+    }
 }

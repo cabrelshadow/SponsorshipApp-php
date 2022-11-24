@@ -10,4 +10,4 @@ $parrain = new Parrainage($db->Con());
 
 $sp = $parrain->getAllFilleulsWithParrain();
 
-return printf(json_encode($sp, true));
+return printf(json_encode($sp));
