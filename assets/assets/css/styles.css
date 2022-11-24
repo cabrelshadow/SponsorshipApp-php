@@ -456,7 +456,11 @@ body {
     /* -webkit-animation-delay: 2s; */
     /* animation: slide 0.7s forwards; */
     /* animation-delay: 2s; */
-    animation: moveSlideshow 12s linear infinite;
+   
+}
+
+.anim{
+   animation: moveSlideshow 12s linear infinite;
 }
 
 @keyframes moveSlideshow {

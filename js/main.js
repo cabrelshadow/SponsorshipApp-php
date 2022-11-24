@@ -162,10 +162,11 @@ setTimeout(() => {
       parrain.style.display = "none";
     }
   }
+  AllParrain[current].classList.add("anim");
   AllParrain[current].style.display = "block";
   AllParrain[current].setAttribute("data-current", current);
   Carousel();
-}, 2000);
+}, 6000);
 
 function Carousel() {
   const AllParrain = document.querySelectorAll(".parrain");
@@ -173,11 +174,13 @@ function Carousel() {
   setTimeout(() => {
     console.log(current);
     AllParrain[current - 1].style.display = "none";
+    AllParrain[current - 1].classList.remove("anim");
     AllParrain[current].style.display = "block";
-    AllParrain[current].style.backgroundColor =
-      //   "#" + Math.floor(Math.random() * 16777215).toString(16);
-      AllParrain[current].setAttribute("data-current", current);
-  }, 2000);
+    AllParrain[current].classList.add("anim");
+    // AllParrain[current].style.backgroundColor =
+    //   "#" + Math.floor(Math.random() * 16777215).toString(16);
+    AllParrain[current].setAttribute("data-current", current);
+  }, 14000);
   setTimeout(Carousel, 14000);
 }
 
