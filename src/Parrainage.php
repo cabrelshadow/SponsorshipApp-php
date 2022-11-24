@@ -258,6 +258,7 @@ class Parrainage
         foreach ($getParrain as $parrain) {
             $getFilleul = $this->getFilleulsByParrain(0, $parrain['IDPARRAIN']);
             $fdata = [
+        'PARRAIN_ID' => $parrain['IDPARRAIN'],
         'PARRAIN_NAME' => $parrain['FULLNAME'],
         'PARRAIN_email' => $parrain['EMAIL'],
         'PARRAIN_phone' => $parrain['PHONE'],

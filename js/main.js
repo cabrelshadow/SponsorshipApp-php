@@ -18,6 +18,7 @@ function HttpRequest(method, url) {
     if (xhr.readyState == 4 && xhr.status === 200) {
       let filleuls = "";
       Array(JSON.parse(xhr.response))[0].forEach((child) => {
+        const test = "ton front";
         filleuls += `
         
            <div class="parrain">
@@ -27,15 +28,17 @@ function HttpRequest(method, url) {
                 <div class="clash-card barbarian">
                     <div class="clash-card__image clash-card__image--barbarian">
                         <img src="${
-                          child[4]
-                            ? "../upload/" + child[4]
+                          child["PARRAIN_picture"]
+                            ? "../upload/" + child["PARRAIN_picture"]
                             : "../assets/def.jpg"
                         }" alt="barbarian" />
                     </div>
                     <div class="clash-card__level clash-card__level--barbarian">${
-                      child["0"]
+                      child["PARRAIN_NAME"]
                     }</div>
-                    <div class="clash-card__unit-name">Eleve ${child[3]}</div>
+                    <div class="clash-card__unit-name">Eleve ${
+                      child["PARRAIN_faculty"]
+                    }</div>
                     <div class="clash-card__unit-description">
                         Parrain<br>
 
@@ -45,17 +48,23 @@ function HttpRequest(method, url) {
                     <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
                         <div class="one-third">
                             <div class="stat">Email</div>
-                            <div class="stat-value">${child[2]}</div>
+                            <div class="stat-value">${
+                              child["PARRAIN_email"]
+                            }</div>
                         </div>
 
                         <div class="one-third">
                             <div class="stat">Numero</div>
-                            <div class="stat-value">${child[1]}</div>
+                            <div class="stat-value">${
+                              child["PARRAIN_phone"]
+                            }</div>
                         </div>
 
                         <div class="one-third no-border">
                             <div class="stat">Filiere</div>
-                            <div class="stat-value"> ${child[3]}</div>
+                            <div class="stat-value"> ${
+                              child["PARRAIN_faculty"]
+                            }</div>
                         </div>
 
                     </div>
@@ -67,18 +76,27 @@ function HttpRequest(method, url) {
 
         </div>
 
+        
 
-        <div class="container_bottom">
+        <div class="container_bottom" id="filleul${child["PARRAIN_ID"]}">
+        </div>
+           </div>
+        `;
 
-            <div class="wrapper">
+        // document.addEventListener("DOMContentLoaded", (e) => {
+        setTimeout(() => {
+          let childrens = "";
+          Array(child["PARRAIN_filleuls"])[0].forEach((filleul) => {
+            childrens += `
+              <div class="wrapper">
                 <div class="clash-card barbarian">
                     <div class="clash-card__image clash-card__image--barbarian">
                         <img src="../assets/5.webp" alt="barbarian" />
                     </div>
-                    <div class="clash-card__level clash-card__level--barbarian">Sado scott</div>
-                    <div class="clash-card__unit-name">Eleve de tic pam 1</div>
+                    <div class="clash-card__level clash-card__level--barbarian">${filleul["FULLNAME"]}</div>
+                    <div class="clash-card__unit-name">Eleve ${filleul["FACULTY"]}</div>
                     <div class="clash-card__unit-description">
-                        Parrain<br>
+                        Filleul<br>
 
 
                     </div>
@@ -86,62 +104,39 @@ function HttpRequest(method, url) {
                     <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
                         <div class="one-third">
                             <div class="stat">Email</div>
-                            <div class="stat-value">sado@gmail.com</div>
+                            <div class="stat-value">${filleul["EMAIL"]}</div>
                         </div>
 
                         <div class="one-third">
                             <div class="stat">Numero</div>
-                            <div class="stat-value">698458434</div>
+                            <div class="stat-value">${filleul["PHONE"]}</div>
                         </div>
 
                         <div class="one-third no-border">
                             <div class="stat">Filiere</div>
-                            <div class="stat-value">Tic pam 2</div>
+                            <div class="stat-value">${filleul["FACULTY"]}</div>
                         </div>
 
                     </div>
 
                 </div>
             </div>
-            <div class="wrapper">
-                <div class="clash-card barbarian">
-                    <div class="clash-card__image clash-card__image--barbarian">
-                        <img src="../assets/5.webp" alt="barbarian" />
-                    </div>
-                    <div class="clash-card__level clash-card__level--barbarian">Sado scott</div>
-                    <div class="clash-card__unit-name">Eleve de tic pam 1</div>
-                    <div class="clash-card__unit-description">
-                        Parrain<br>
-
-
-                    </div>
-
-                    <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
-                        <div class="one-third">
-                            <div class="stat">Email</div>
-                            <div class="stat-value">sado@gmail.com</div>
-                        </div>
-
-                        <div class="one-third">
-                            <div class="stat">Numero</div>
-                            <div class="stat-value">698458434</div>
-                        </div>
-
-                        <div class="one-third no-border">
-                            <div class="stat">Filiere</div>
-                            <div class="stat-value">Tic pam 2</div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-           </div>
-           </div>
+            
+          
+          
+            
+           
                 `;
-        getNode("#sponsorship").innerHTML = filleuls;
-        // console.log(child)
+            getNode("#filleul" + child["PARRAIN_ID"]).innerHTML = childrens;
+          });
+        }, 3000);
+        // });
       });
+
+      getNode("#sponsorship").innerHTML = filleuls;
+
+      // console.log(childrens);
+
       // console.log(filleuls)
 
       return children;
@@ -193,3 +188,40 @@ document.addEventListener("keyup", (e) => {
 });
 
 // FrontMain();
+/**
+ * 
+ * <div class="wrapper">
+                <div class="clash-card barbarian">
+                    <div class="clash-card__image clash-card__image--barbarian">
+                        <img src="../assets/5.webp" alt="barbarian" />
+                    </div>
+                    <div class="clash-card__level clash-card__level--barbarian">Sado scott</div>
+                    <div class="clash-card__unit-name">Eleve de tic pam 1</div>
+                    <div class="clash-card__unit-description">
+                        Parrain<br>
+
+
+                    </div>
+
+                    <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+                        <div class="one-third">
+                            <div class="stat">Email</div>
+                            <div class="stat-value">sado@gmail.com</div>
+                        </div>
+
+                        <div class="one-third">
+                            <div class="stat">Numero</div>
+                            <div class="stat-value">698458434</div>
+                        </div>
+
+                        <div class="one-third no-border">
+                            <div class="stat">Filiere</div>
+                            <div class="stat-value">Tic pam 2</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+ * 
+ */
