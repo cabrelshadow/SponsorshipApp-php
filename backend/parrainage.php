@@ -7,7 +7,7 @@ require '../db/db.php';
 $db = new DatabaseConfig();
 
 $parrain = new Parrainage($db->Con());
-/*$nbr = $parrain->setRandomParrainTIC1_TIC2(function ($br) {
+$nbr = $parrain->setRandomParrainTIC1_TIC2(function ($br) {
     var_dump($br);
 });
 var_dump($nbr);
@@ -15,7 +15,7 @@ var_dump($nbr);
 $nbr = $parrain->setRandomParrain3il1_3il2(function ($br) {
     var_dump($br);
 });
-var_dump($nbr);*/
+var_dump($nbr);
 
 $parrainTi=$parrain->getAllFilleulsWithParrain();
 $json=array();
