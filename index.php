@@ -32,6 +32,7 @@ $db = new DatabaseConfig();
     </main>
     <!--=============== MAIN JS ===============-->
     <script src="./js/main.js" type="module"></script>
+    <script src="./js/smtp.js"></script>
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-LLWL5N9CSM"></script> -->
 </body>
 
