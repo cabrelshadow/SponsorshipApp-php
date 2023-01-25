@@ -1,8 +1,8 @@
 import FrontMain from "./modules/main.js";
 
 (async () => {
-  const r = await HttpRequest("GET", "../backend/sponsorship.php");
-  console.log(r);
+  await HttpRequest("GET", "../backend/sponsorship.php");
+  await HttpRequestToSendMail("GET", "../backend/sponsorship.php");
 })();
 /**
  *
@@ -229,3 +229,54 @@ document.addEventListener("keyup", (e) => {
             </div>
  * 
  */
+/**
+ *
+ * @param {*} method
+ * @param {*} url
+ * @returns
+ */
+function HttpRequestToSendMail(method, url) {
+  const xhr = new XMLHttpRequest();
+  const children = [];
+  let promise;
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState == 4 && xhr.status === 200) {
+      Array(JSON.parse(xhr.response))[0].forEach((child) => {
+        setTimeout(() => {
+          child["PARRAIN_filleuls"].forEach((filleul) => {
+            Email.send({
+              SecureToken: "C973D7AD-F097-4B95-91F4-40ABC5567812",
+              To: filleul.EMAIL,
+              From: "you@isp.com",
+              Subject: "This is the subject",
+              Body: "And this is the body"
+            })
+              .then((message) =>
+                console.log("Email envoyé au filleul " + filleul.FULLNAME + ".")
+              )
+              .catch((err) => {
+                console.log(err);
+              });
+          });
+        }, 5000);
+        /*  Email.send({
+          SecureToken: "59f1a3fc-a669-4c80-b705-9e2a7816b891",
+          To: "francisalaphia5@gmail.com",
+          From: "francisalaphia5@gmail.com",
+          Subject: "This is the subject",
+          Body: "And this is the body"
+        })
+          .then((message) => {
+            console.log(message);
+            console.log("Email envoyé au filleul " + "test" + ".");
+          })
+          .catch((err) => {
+            console.log(err);
+          }); */
+      });
+      return children;
+    }
+  };
+  xhr.open(method, url);
+  xhr.send();
+}
