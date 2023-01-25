@@ -17,9 +17,9 @@ if (isset($_POST['submit']) && isset($_SESSION['IDFILLEULS'])) {
         $img_explode = explode('.', $img_name);
         $img_ext = end($img_explode);
 
-        $extensions = ['jpeg', 'png', 'jpg'];
+        $extensions = ['jpeg', 'png', 'jpg','JPG'];
         if (in_array($img_ext, $extensions) === true) {
-            $types = ['image/jpeg', 'image/jpg', 'image/png'];
+            $types = ['image/jpeg', 'image/jpg' ,'image/JPG', 'image/png'];
             if (in_array($img_type, $types) === true) {
                 $getFilleul = $db->Con()->query("SELECT * FROM filleuls WHERE IDFILLEULS='".$_SESSION['IDFILLEULS']."'");
                 if ($getFilleul->rowCount() > 0) {
@@ -58,9 +58,9 @@ if (isset($_POST['submit']) && isset($_SESSION['IDPARRAIN'])) {
         $img_explode = explode('.', $img_name);
         $img_ext = end($img_explode);
 
-        $extensions = ['jpeg', 'png', 'jpg'];
+        $extensions = ['jpeg', 'png', 'jpg','JPG'];
         if (in_array($img_ext, $extensions) === true) {
-            $types = ['image/jpeg', 'image/jpg', 'image/png'];
+            $types = ['image/jpeg', 'image/jpg', 'image/png','image/JPG'];
             if (in_array($img_type, $types) === true) {
                 $getFilleul = $db->Con()->query("SELECT * FROM parrain WHERE IDPARRAIN='".$_SESSION['IDPARRAIN']."'");
                 if ($getFilleul->rowCount() > 0) {

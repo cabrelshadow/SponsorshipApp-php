@@ -34,10 +34,11 @@ function HttpRequest(method, url) {
                         }" alt="barbarian" />
                     </div>
                     <div class="clash-card__level clash-card__level--barbarian">${
-                      child["PARRAIN_NAME"]
-                    }</div>
-                    <div class="clash-card__unit-name">Eleve ${
+                     
                       child["PARRAIN_faculty"]
+                    }</div>
+                    <div class="clash-card__unit-name"> ${
+                      child["PARRAIN_NAME"]
                     }</div>
                     <div class="clash-card__unit-description">
                         Parrain<br>
@@ -93,8 +94,8 @@ function HttpRequest(method, url) {
                     <div class="clash-card__image clash-card__image--barbarian">
                         <img src="../assets/5.webp" alt="barbarian" />
                     </div>
-                    <div class="clash-card__level clash-card__level--barbarian">${filleul["FULLNAME"]}</div>
-                    <div class="clash-card__unit-name">Eleve ${filleul["FACULTY"]}</div>
+                    <div class="clash-card__level clash-card__level--barbarian">${filleul["FACULTY"]}</div>
+                    <div class="clash-card__unit-name">${filleul["FULLNAME"]}</div>
                     <div class="clash-card__unit-description">
                         Filleul<br>
 
@@ -199,7 +200,7 @@ document.addEventListener("keyup", (e) => {
                         <img src="../assets/5.webp" alt="barbarian" />
                     </div>
                     <div class="clash-card__level clash-card__level--barbarian">Sado scott</div>
-                    <div class="clash-card__unit-name">Eleve de tic pam 1</div>
+                    <div class="clash-card__unit-name">Etudiant de tic pam 1</div>
                     <div class="clash-card__unit-description">
                         Parrain<br>
 

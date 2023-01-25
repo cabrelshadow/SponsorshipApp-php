@@ -8,7 +8,7 @@ const fac = "Prepa 01"
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password:"cyberlyne",
+  password:"",
   database: 'sponsorsphipbd'
 });
 const result = excelToJson({
@@ -33,10 +33,10 @@ for (const k in result[fac]) {
      fac:element["A"]+"-"+element["B"]
     };
     connection.query("INSERT INTO filleuls (FULLNAME, PHONE,EMAIL,FACULTY) VALUES ('"+fData.fullname+"','"+fData.tel+"','"+fData.email+"','"+fData.fac+"')")
-    // axios.post("http://localhost:86/backend/injectdata.php",fData).then((re)=>{
-    //     console.log(re.code)
-    // });
-    // console.log(fData);
+     axios.post("http://localhost:86/backend/injectdata.php",fData).then((re)=>{
+        console.log(re.code)
+    });
+   console.log(fData);
     
   }
 }
